@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'notes/css/style_index.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <h1>My Posts</h1>
+        <div id="content">
+            <p class='notes'>This is the first note</p>
+            <p class='notes'>By me a drink</p>
+            <p class='notes'>This is going to be a long long long lonlong post</p>
+        </div>
+        <div id="add">
+            <form action="/add_note", method="POST">
+            {% csrf_token %}
+                <label id="label" for="add_note">Add a note:</label><br>
+                <textarea name="notes" id="add_note" cols="30" rows="5"></textarea><br>
+                <input type="submit" value='Post It!'>
+            </form>
+            {% if messages %}
+                {% for message in messages %}
+                    <p class='error'>***{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
